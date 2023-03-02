@@ -49,13 +49,13 @@ list_pred=np.zeros((len(array_pred))).astype(str)
 for i in range(len(header)):
     list_pred[pred_data[:,i]==1]=i
 
-confusion_matrix = np.zeros((8,8))
+confusion_matrix = np.zeros((len(header),len(header)))
 for i in range(len(list_truth)):
     actual = int(list_truth[i])
     predicted = int(list_pred[i])
     confusion_matrix[actual, predicted] = confusion_matrix[actual, predicted]+1
 
-norm_conf_matrix=np.zeros((8,8))
+norm_conf_matrix=np.zeros((len(header),len(header)))
 for i in range(len(confusion_matrix)):
     for j in range(len(confusion_matrix)):
         norm_conf_matrix[i,j]=confusion_matrix[i,j]/np.sum(confusion_matrix[i])
