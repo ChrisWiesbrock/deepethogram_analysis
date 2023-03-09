@@ -87,3 +87,76 @@ plt.xlabel('True')
 plt.ylabel('Predicted')
 fig.tight_layout()
 plt.show()
+
+#Barcode plot
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+start=2000
+stop=5000
+
+
+code =np.array(array_truth[start:stop])
+
+fig, axes = plt.subplots(nrows=code.shape[1])
+
+
+pixel_per_bar = 4
+dpi = 100
+
+for i in range(code.shape[1]):
+    ax = axes[i]
+    
+   
+    ax.imshow(code[:,i].reshape(1, -1), cmap='binary', aspect='auto', interpolation='nearest')
+    ax.spines['top'].set_color('none')
+    ax.spines['bottom'].set_color('none')
+    ax.spines['left'].set_color('none')
+    ax.spines['right'].set_color('none')
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_ylabel(str(header[i]), rotation=0, labelpad=50)
+    if i==0:
+        ax.set_title('Ground Truth')
+    if i==code.shape[1]-1:
+        ax.spines['bottom'].set_color('k')
+        ax.set_xticks(np.linspace(0,stop-start,9))
+        ax.set_xlabel('Frame')
+plt.show()
+    
+
+
+
+code =np.array(array_pred[start:stop])
+
+
+
+fig, axes = plt.subplots(nrows=code.shape[1])
+
+for i in range(code.shape[1]):
+    ax = axes[i]
+    
+   
+    ax.imshow(code[:,i].reshape(1, -1), cmap='binary', aspect='auto', interpolation='nearest')
+    ax.spines['top'].set_color('none')
+    ax.spines['bottom'].set_color('none')
+    ax.spines['left'].set_color('none')
+    ax.spines['right'].set_color('none')
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_ylabel(str(header[i]), rotation=0, labelpad=50)
+    if i==0:
+        ax.set_title('DEG Prediction')
+    if i==code.shape[1]-1:
+        ax.spines['bottom'].set_color('k')
+        ax.set_xticks(np.linspace(0,stop-start,9))
+        ax.set_xlabel('Frame')
+
+
+plt.show()
+
+
+    
+
+    
